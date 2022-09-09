@@ -1,10 +1,12 @@
 
 
-import { StyleSheet, Text, View , Button, Image, requireNativeComponent } from 'react-native';
+import { StyleSheet, Text, View , Button, Image, requireNativeComponent, Pressable} from 'react-native';
 import{ Audio} from 'expo-av'
 import * as React from 'react'
 import { LinearGradient } from 'expo-linear-gradient';
-// import LinearGradient from 'react-native-linear-gradient'
+// import Wave from 'react-native-waveview';
+
+
 
 
 export default function App() {
@@ -74,19 +76,56 @@ function getRecordingLines(){
   return (
     <LinearGradient style={{height:"100%"}}  colors={['#3522c3', '#bc2dfd',]}>
           <View style={styles.container}>
+            <View style={styles.headingV}><Text style={styles.heading}>Voice Recorder</Text></View>
+            
       
-      <View>
+      <View style={styles.picture}>
         <Image
-          style={{width: 150, height: 150, borderRadius:'50%'}}
+          style={{width: 180, height: 180, borderRadius:'50%', marginTop:'-50%'}}
           source={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEFSV156n1wqIy5xly4uiPcqQfNCoGGpx7KA&usqp=CAU"}
+        />
+        <Image
+            style={{width:200, height:70, marginTop:'30px', marginBottom:'20px'}}
+            // source={"https://miro.medium.com/max/1200/0*vr9CgUKm35izlY5U.gif"}
+            source={"https://th.bing.com/th/id/R.d37b6d142b1bde0b0816e13a344dfc29?rik=%2f0mYYyODmIfGZA&pid=ImgRaw&r=0"}
         />
       </View>
       <Text>{message}</Text>
-      <Button
-         title={recording ? 'Stop recording' : 'Start recording' }
+
+        <Pressable onPress={recording ? stopRecording : startRecording}>
+          <LinearGradient style={{borderRadius:20}} colors={['#09cbeb', '#090979', '#00d4ff']}>
+            <View style={styles.record}>
+
+              <Text style={{ color: 'white', fontSize: '15px', fontWeight: 'bold',margin:7, marginLeft:'20px',marginTop:'10px'}}>{recording ? 'Stop recording' : 'Start recording'}</Text>
+
+            </View>
+          </LinearGradient>
+
+          {getRecordingLines()}
+
+        </Pressable>
+      
+      {/* <Button
+       color='#4d9a9c'    
+        style={{width:'100px'}}
+         title={recording ? 'Stop recording' : 'Start recording'} 
          onPress={recording? stopRecording : startRecording}
+         
          />
-           {getRecordingLines()}
+           {getRecordingLines()} */}
+
+
+           {/* <WaveView
+     height={50}
+     width={wp('80%')}
+     waveColor={'#0ff'}
+     waveSpeed={'slow'}
+     waveAmplitude={20}
+     noOfWaves={70}
+     wavePosition={'both'}
+     style={{ alignItems: 'center', justifyContent: 'center', alignSelf: 'center' }}
+    /> */}
+       
       {/* <LinearGradient
          // Button Linear Gradient
       
@@ -115,6 +154,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   
   },
+  headingV:{
+    marginBottom: 400,
+  },
+  heading:{
+    marginTop: 0,
+    color:'white',
+    fontSize:'40px',
+    // fontWeight:'bold',
+  },
+  picture:{
+    marginTop: '-70%',
+  },
   row:{
     flexDirection:'row',
     alignItems: 'center',
@@ -127,6 +178,17 @@ const styles = StyleSheet.create({
   },
   button:{
     margin:16
+  },
+  record:{
+    // borderWidth:3,
+    width:150,
+    height:50,
+    borderRadius: 20,
+    
+    // borderBottomLeftRadius:15
+  
+    
+    
   }
 });
 

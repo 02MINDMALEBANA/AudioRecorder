@@ -1,4 +1,6 @@
 
+
+
 // import { StyleSheet, Text, View , Button } from 'react-native';
 // import{ Audio} from 'expo-av'
 // import * as React from 'react'
@@ -102,3 +104,6 @@
 //     margin:16
 //   }
 // });
+
+
+///  https://snyk.io/advisor/npm-package/react-native-waveview-android
